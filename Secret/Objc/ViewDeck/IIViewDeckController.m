@@ -82,7 +82,7 @@ __typeof__(h) __h = (h);                                    \
 };                                                 \
 })
 
-#define kSideWith 30.0
+#define kSideWith 100.0
 
 #import "IIViewDeckController.h"
 #import <objc/runtime.h>

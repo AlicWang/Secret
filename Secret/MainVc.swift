@@ -10,37 +10,30 @@ import UIKit
 
 class MainVc: UIViewController {
 
+    @IBOutlet weak var tittleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tittleLabel.text = "Add Records"
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+
+        //[[AudoPlayer sharePlayer]setPlayBackground:YES];// 后台播放音频
         
-        self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-        // Override point for customization after application launch.
-        
-        
-        [[AudoPlayer sharePlayer]setPlayBackground:YES];// 后台播放音频
-        
-        MainTabVc  *centerVc = [[[MainTabVc alloc]init]autorelease];
         
         //  --------------------控制只显示左右的侧边栏--------------------
-        MoreVc *leftView = [[[MoreVc alloc] init] autorelease];
-        MessageVc *rightView = [[[MessageVc alloc] init] autorelease];
-        
-        IIViewDeckController *vc =[[IIViewDeckController alloc]initWithCenterViewController:centerVc leftViewController:leftView rightViewController:rightView];
-        
-        self.viewController = [vc autorelease];
-        
-        DirectionNavigationController *root = [[DirectionNavigationController alloc]initWithRootViewController:self.viewController];
-        [root setNavigationBarHidden:YES];//隐藏导航栏
-        self.rootViewController = [root autorelease];
-        self.window.rootViewController = self.rootViewController;
-        [self.window makeKeyAndVisible];
+//        UIViewController *leftView = [[UIViewController alloc]init] ;
+//        
+//        IIViewDeckController *vc =[[IIViewDeckController alloc]initWithCenterViewController:centerVc leftViewController:leftView ];
+//        
+//        
+//        DirectionNavigationController *root = [[DirectionNavigationController alloc]initWithRootViewController:vc];
+//        [root setNavigationBarHidden:YES];//隐藏导航栏
+
     }
     
 
@@ -53,5 +46,9 @@ class MainVc: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func logOut(sender: UIButton) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }

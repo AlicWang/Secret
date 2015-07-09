@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class TextFieldView:UIView{
 
     required init(coder aDecoder: NSCoder) {
@@ -16,6 +17,7 @@ class TextFieldView:UIView{
     }
 
     @IBOutlet var txtFieldArray: [UITextField]!
+
 
     var currentField: NSInteger
     
@@ -96,8 +98,11 @@ class TextFieldView:UIView{
     }
 }
 
-class SignUpVc: UIViewController {
+class SignUpVc: UIViewController ,UITextFieldDelegate{
 
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
@@ -115,6 +120,39 @@ class SignUpVc: UIViewController {
         self.title = "Login"
         self.myMethod()
         self.myMethod1()
+    }
+    
+    // MARK: - UITextField Delegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if textField == nameField{
+            
+            passwordField.becomeFirstResponder()
+            
+        }else if textField == passwordField{
+            
+            // 进入主页
+            
+            
+            var leftVc :UIViewController = UIViewController()
+            leftVc.view.backgroundColor = UIColor.redColor()
+            
+            var rightVc :UIViewController = UIViewController()
+            rightVc.view.backgroundColor = UIColor.blueColor()
+
+            
+            var centerVc: UIViewController = UIStoryboard(name:"MainVc", bundle: nil).instantiateInitialViewController() as UIViewController
+            //centerVc.view.backgroundColor = UIColor.greenColor()
+            var mainVc: UIViewController = IIViewDeckController(centerViewController: centerVc, leftViewController: leftVc, rightViewController: rightVc)
+            
+            
+            
+            mainVc.modalPresentationStyle = UIModalPresentationStyle.OverFullScreen
+            mainVc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            self.presentViewController(mainVc , animated: true, completion: nil)
+        }
+        return true;
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

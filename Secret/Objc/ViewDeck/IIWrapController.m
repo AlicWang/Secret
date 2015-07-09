@@ -70,7 +70,6 @@
         _wrappedController = controller;
         [controller setWrapController:self];
     }
-    [[SignUpVc alloc]init];
     return self;
 }
 
